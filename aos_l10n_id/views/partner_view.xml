@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+
+		<record id="view_partner_address_form_aos_l10n_id" model="ir.ui.view">
+            <field name="name">res.partner.form.address.aos_partner</field>
+            <field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_address_form" />
+			<field name="arch" type="xml">
+				<field name="street2" position="after">
+					<div class="address_format">
+						<field name="blok" placeholder="Blok" style="width: 22%%"/>
+						<field name="nomor" placeholder="No." style="width: 22%%"/>
+	                    <field name="rt" placeholder="RT" style="width: 25%%"/>/
+	                    <field name="rw" placeholder="RW" style="width: 25%%"/>
+	                </div>
+	                <div class="address_additional_format">
+                        <field name="kelurahan_id" context="{'search_default_province': state_id, 'search_default_kecamatan': kecamatan_id, 'search_default_kabupaten': kabupaten_id}" options='{"no_open": True, "no_create": True}' placeholder="Kelurahan" style="width: 33%%"/>
+                        <field name="kecamatan_id" context="{'search_default_province': state_id, 'search_default_kabupaten': kabupaten_id}" options='{"no_open": True, "no_create": True}' placeholder="Kecamatan" style="width: 33%%"/>
+                        <field name="kabupaten_id" context="{'search_default_province': state_id}" options='{"no_open": True, "no_create": True}' class="oe_no_button" placeholder="Kabupaten" style="width: 32%%"/>
+                    </div>
+	           	</field>
+			</field>
+		</record>
+
+		<record id="view_partner_form_aos_l10n_id" model="ir.ui.view">
+        	<field name="name">dos.res.partner.custom</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+				<field name="street2" position="after">
+					<div class="address_format">
+						<field name="blok" placeholder="Blok" style="width: 22%%" modifiers="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+						<field name="nomor" placeholder="No." style="width: 22%%" modifiers="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+	                    <field name="rt" placeholder="RT" style="width: 25%%" modifiers="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>/
+	                    <field name="rw" placeholder="RW" style="width: 25%%" modifiers="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+	                </div>
+	                <div class="address_additional_format">
+                        <field name="kelurahan_id" context="{'search_default_province': state_id, 'search_default_kecamatan': kecamatan_id, 'search_default_kabupaten': kabupaten_id}" options='{"no_open": True, "no_create": True}' placeholder="Kelurahan" style="width: 33%%" modifiers="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                        <field name="kecamatan_id" context="{'search_default_province': state_id, 'search_default_kabupaten': kabupaten_id}" options='{"no_open": True, "no_create": True}' placeholder="Kecamatan" style="width: 33%%" modifiers="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                        <field name="kabupaten_id" context="{'search_default_province': state_id}" options='{"no_open": True, "no_create": True}' class="oe_no_button" placeholder="Kabupaten" style="width: 32%%" modifiers="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                    </div>
+	           	</field>
+                <xpath expr="//div[@name='div_address']/field[@name='street2']" position="after">
+					<div class="address_format">
+						<field name="blok" placeholder="Blok" style="width: 20%%"/>
+						<field name="nomor" placeholder="No." style="width: 20%%"/>
+	                    <field name="rt" placeholder="RT" style="width: 20%%"/>/
+	                    <field name="rw" placeholder="RW" style="width: 20%%"/>
+	                </div>
+	                <div class="address_additional_format">
+                        <field name="kelurahan_id" context="{'search_default_province': state_id, 'search_default_kecamatan': kecamatan_id, 'search_default_kabupaten': kabupaten_id}" options='{"no_open": True, "no_create": True}' placeholder="Kelurahan" style="width: 33%%"/>
+                        <field name="kecamatan_id" context="{'search_default_province': state_id, 'search_default_kabupaten': kabupaten_id}" options='{"no_open": True, "no_create": True}' placeholder="Kecamatan" style="width: 33%%"/>
+                        <field name="kabupaten_id" context="{'search_default_province': state_id}" options='{"no_open": True, "no_create": True}' class="oe_no_button" placeholder="Kabupaten" style="width: 32%%"/>
+                    </div>
+				</xpath>
+			</field>
+		</record>
+
+		<menuitem id="contacts.res_partner_menu_config"
+	        name="Configuration"
+	        parent="contacts.menu_contacts"
+	        groups="base.group_system"
+	        sequence="99"/>
+
+	    <menuitem action="action_kabupaten" id="menu_kabupaten_contact_list_view"
+	    	parent="contacts.menu_localisation" sequence="4"/>
+        <menuitem action="action_kecamatan" id="menu_kecamatan_contact_list_view"
+        	parent="contacts.menu_localisation" sequence="5"/>
+        <menuitem action="action_kelurahan" id="menu_kelurahan_contact_list_view"
+        	parent="contacts.menu_localisation" sequence="6"/>
+
+	</data>
+</odoo>
